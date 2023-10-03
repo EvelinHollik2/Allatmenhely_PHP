@@ -9,10 +9,11 @@ class Database {
     }
 
     public function login($name, $pass) {
-        if ($result = $this->db->query("SELECT * FROM users")) {
+        if ($result = $this->db->query('SELECT * FROM users WHERE name LIKE "'.$name.'";')) {
             echo "Returned rows are: " . $result->num_rows;
             // Free result set
             $result->free_result();
         }
+        return false;
     }
 }

@@ -1,10 +1,12 @@
 <?php
 session_start();
 require_once './classes/Database.php';
-$db = new Database("localhost",  "root", "", "menhely");
-$db->login("Lajos", "Lajos");
-$_SESSION['username'] = 'Lajos';
-$_SESSION['password'] = 'Lajos';
+//-- Példányosítás
+$db = new Database("localhost", "root", "", "menhely");
+
+if (!isset($_SESSION['login'])) {
+    $_SESSION['login'] = false;
+}
 $_SESSION['login'] = false;
 if (filter_input(INPUT_POST,
                 'belepesiAdatok',
@@ -13,9 +15,12 @@ if (filter_input(INPUT_POST,
     //-- A kapott adatok feldolgozása    
     $username = htmlspecialchars(filter_input(INPUT_POST, 'username'));
     $password = htmlspecialchars(filter_input(INPUT_POST, 'InputPassword'));
-    var_dump($username, $password);
+    $db->login($username, $password);
+
     if ($username == "Lajos" && $password == "Lajos") {
         $_SESSION['login'] = true;
+        $_SESSION['username'] = 'Lajos';
+        $_SESSION['password'] = 'Lajos';
     }
 }
 require_once './layout/head.php';
