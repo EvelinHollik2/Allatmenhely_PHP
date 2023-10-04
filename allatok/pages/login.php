@@ -12,4 +12,5 @@
 
         <button type="submit" class="btn btn-primary" name="belepesiAdatok" value="true">Submit</button>
     </form>
+    <a href="index.php?menu=regisztracio">Regisztráció</a>
 </div>

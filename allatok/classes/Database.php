@@ -17,13 +17,28 @@ class Database {
         if ($stmt->execute()) {
             //-- Sikeres végrehajtás után lekérjül az adatokat
             $result = $stmt->get_result();
-            echo '<pre>';
-            var_dump($result);
-            echo '<pre>';
-            echo "Returned rows are: " . $result->num_rows;
+            $row = $result->fetch_assoc();
+            if (password_verify($pass, $row['password'])) {
+                //-- felhasználónév és jelszó helyes
+                $_SESSION['username'] = $row['name'];
+                $_SESSION['login'] = true;
+            } else {
+                $_SESSION['username'] = '';
+                $_SESSION['login'] = false;
+            }
+
             // Free result set
             $result->free_result();
         }
         return false;
+    }
+
+    public function register($name, $pass) {
+        $stmt = $this->db->prepare("INSERT INTO `users` (`name`, `password`) VALUES (?, ?);");
+        $stmt->bind_param("sb", $name, password_hash($pass, PASSWORD_BCRYPT));
+        if ($stmt->execute()) {
+            $_SESSION['login'] = true;
+            header("Location: index.php");
+        }
     }
 }

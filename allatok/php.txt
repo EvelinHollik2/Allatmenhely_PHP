@@ -25,8 +25,12 @@ NAMESPACE -- Könyvtárszerkezet
 Kriptográfiai hash-függvény:
 -- Bármilyen hosszúságú adatot adott hosszúságra képezhetünk le.
 
+Associative tömb:
+--
+
 adatbázis rész:
 Jelszó titkosítása: MD5-ös függvény (legrégebbi)
+Kiütítés: TRUNCATE
 
 adatbázis kezelők:
 mysqli 
@@ -34,3 +38,4 @@ pdo
 
 php mysqli -- objektum orientált programozási mód
 pdo -- akkor használjuk ha nem adatbázis specifikusan akarunk programozni
+
