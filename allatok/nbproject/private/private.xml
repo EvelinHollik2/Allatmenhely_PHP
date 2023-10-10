@@ -3,14 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/allatok/pages/regisztracio.php</file>
-            <file>file:/C:/xampp/htdocs/allatok/layout/menu.php</file>
-            <file>file:/C:/xampp/htdocs/allatok/tartalom.php</file>
-            <file>file:/C:/xampp/htdocs/allatok/classes/Database.php</file>
-            <file>file:/C:/xampp/htdocs/allatok/index.php</file>
-            <file>file:/C:/xampp/htdocs/allatok/layout/head.php</file>
-            <file>file:/C:/xampp/htdocs/allatok/pages/login.php</file>
-            <file>file:/C:/xampp/htdocs/allatok/layout/header.php</file>
+            <file>file:/C:/xampp1/htdocs/PHPProject1/classes/Database.php</file>
+            <file>file:/C:/xampp1/htdocs/PHPProject1/layout/menu.php</file>
+            <file>file:/C:/xampp1/htdocs/PHPProject1/pages/regisztracio.php</file>
+            <file>file:/C:/xampp1/htdocs/PHPProject1/tartalom.php</file>
+            <file>file:/C:/xampp1/htdocs/PHPProject1/index.php</file>
+            <file>file:/C:/xampp1/htdocs/PHPProject1/pages/logout.php</file>
+            <file>file:/C:/xampp1/htdocs/PHPProject1/layout/head.php</file>
+            <file>file:/C:/xampp1/htdocs/PHPProject1/pages/login.php</file>
+            <file>file:/C:/xampp1/htdocs/PHPProject1/layout/menhely.css</file>
         </group>
     </open-files>
 </project-private>

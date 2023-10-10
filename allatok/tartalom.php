@@ -1,10 +1,25 @@
 <?php
-if ($_SESSION['login']) {
-    echo $_SESSION['username'].' belépett ';
-} else {
-    if(filter_input(INPUT_GET, "menu")=="regisztracio"){
+
+switch ($menu) {
+    case 'orokbefogadasUser':
+        require_once './pages/orokbefogadasUser.php';
+        break;
+    case 'logout':
+        require_once './pages/logout.php';
+        break;
+    case 'orokbefogadasGuest':
+        require_once './pages/orokbefogadasGuest.php';
+        break;
+    case 'login':
+        require_once './pages/login.php';
+        break;
+    case 'regisztracio':
         require_once './pages/regisztracio.php';
-    } else{
-    require_once './pages/login.php';
-    }
+        break;
+    case 'rolunk':
+        require_once './pages/rolunk.php';
+        break;
+    default:
+        require_once './pages/home.php';
+        break;
 }

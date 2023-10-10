@@ -1,32 +1,20 @@
 <?php
-session_start();
+//-- a visszaküldendő fájl tartalmának a beállítása
+header('Content-Type: text/html; charset=utf-8');
+session_start(); //-- munkamenet adatinak tárolására $_SESSION[]
 require_once './classes/Database.php';
-//-- Példányosítás
 $db = new Database("localhost", "root", "", "menhely");
 
 if (!isset($_SESSION['login'])) {
     $_SESSION['login'] = false;
 }
-$_SESSION['login'] = false;
-if (filter_input(INPUT_POST,
-                'belepesiAdatok',
-                FILTER_VALIDATE_BOOLEAN,
-                FILTER_NULL_ON_FAILURE)) {
-    //-- A kapott adatok feldolgozása    
-    $username = htmlspecialchars(filter_input(INPUT_POST, 'username'));
-    $password = htmlspecialchars(filter_input(INPUT_POST, 'InputPassword'));
-    $db->login($username, $password);
 
-    if ($username == "Lajos" && $password == "Lajos") {
-        $_SESSION['login'] = true;
-        $_SESSION['username'] = 'Lajos';
-        $_SESSION['password'] = 'Lajos';
-    }
-}
 require_once './layout/head.php';
 ?>
 <body>
+    
     <?php
+    $menu = filter_input(INPUT_GET, "menu");
     require_once './layout/header.php';
     require_once './layout/menu.php';
     require_once './tartalom.php';

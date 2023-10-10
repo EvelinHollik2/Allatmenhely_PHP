@@ -9,36 +9,38 @@ class Database {
     }
 
     public function login($name, $pass) {
-        //-- jelezzük a végrehajtandó SQL parancsot
-        $stmt = $this->db->prepare('SELECT * FROM users WHERE name LIKE ?;');
-        //-- elküldjük a végrehajtáshoz szükséges adatokat
+        //-- jelezzük a végrehajtandó SQL parancsot 
+        $stmt = $this->db->prepare('SELECT * FROM user WHERE user.name LIKE ?;');
+        //-- elküdjük a végrehajtáshoz szükséges adatokat
         $stmt->bind_param("s", $name);
-
         if ($stmt->execute()) {
-            //-- Sikeres végrehajtás után lekérjül az adatokat
+            //-- sikeres végrehajtás után lekérjük az adatokat
             $result = $stmt->get_result();
             $row = $result->fetch_assoc();
-            if (password_verify($pass, $row['password'])) {
-                //-- felhasználónév és jelszó helyes
+            //var_dump(password_hash($pass, PASSWORD_ARGON2I));
+            var_dump($row['password'],$pass);
+            if ($pass == $row['password']) {
+                //-- felhasználónáv és jelszó helyes
                 $_SESSION['username'] = $row['name'];
                 $_SESSION['login'] = true;
             } else {
                 $_SESSION['username'] = '';
                 $_SESSION['login'] = false;
             }
-
             // Free result set
             $result->free_result();
+            header("Location: index.php");
         }
         return false;
     }
 
     public function register($name, $pass) {
-        $stmt = $this->db->prepare("INSERT INTO `users` (`name`, `password`) VALUES (?, ?);");
-        $stmt->bind_param("sb", $name, password_hash($pass, PASSWORD_BCRYPT));
+        //$password = password_hash($pass, PASSWORD_ARGON2I);
+        $stmt = $this->db->prepare("INSERT INTO `user` (`name`, `password`) VALUES (?, ?);");
+        $stmt->bind_param("ss", $name, $pass);
         if ($stmt->execute()) {
             $_SESSION['login'] = true;
-            header("Location: index.php");
+            header("location: index.php");
         }
     }
 }

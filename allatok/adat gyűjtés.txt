@@ -1,0 +1,17 @@
+Controller - Routing
+
+Menhely
+
+Vendég:
+-- Regisztráció (email, név, jelszó)
+-- Login
+-- Home - Megtekintheti az állatokat
+	- Lista
+	- Egyedi (név, kor, faj, fajta..)
+-- Rólunk - Örökbefogadás ismertetése
+
+Felhasználó:
+-- Időpont foglalás
+-- Örökbefogadás jelzése
+-- Kilépés
+
