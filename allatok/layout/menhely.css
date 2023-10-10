@@ -6,3 +6,10 @@ body{
     color: white;
     background-color: black;
 }
+
+mb-3{
+    margin: auto;
+    text-align: center;
+    font-size: 50%;
+    
+}
