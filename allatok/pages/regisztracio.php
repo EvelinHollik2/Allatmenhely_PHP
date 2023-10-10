@@ -3,17 +3,27 @@ if (filter_input(INPUT_POST, 'regisztraciosAdatok', FILTER_VALIDATE_BOOLEAN, FIL
     $pass1 = filter_input(INPUT_POST, "password");
     $pass2 = filter_input(INPUT_POST, "password2");
     $name = htmlspecialchars(filter_input(INPUT_POST, 'username'));
+    $email = filter_input(INPUT_POST, "email");
+    $szemelyi = filter_input(INPUT_POST, "szemelyi");
     if ($pass1 != $pass2) {
         echo '<p>Nem egyeznek a jelszavak!</p>';
     } else {
         //-- regisztráció indítása
-        $db->register($name, $pass1);
+        $db->register($email, $szemelyi, $name, $pass1);
         header("Location: index.php");
     }
 }
 ?>
 <div class="container">
     <form action="#" method="post">
+        <div class="mb-3">
+            <label for="email" class="form-label">E-mail cím:</label>
+            <input type="text" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="szemelyi" class="form-label">Személyi igazolvány száma:</label>
+            <input type="text" class="form-control" id="szemelyi" name="szemelyi" aria-describedby="emailHelp">
+        </div>
         <div class="mb-3">
             <label for="username" class="form-label">Felhasználó név</label>
             <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
