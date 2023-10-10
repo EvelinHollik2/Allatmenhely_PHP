@@ -34,10 +34,10 @@ class Database {
         return false;
     }
 
-    public function register($name, $pass) {
+    public function register($email, $szemelyi, $name, $pass) {
         //$password = password_hash($pass, PASSWORD_ARGON2I);
-        $stmt = $this->db->prepare("INSERT INTO `user` (`name`, `password`) VALUES (?, ?);");
-        $stmt->bind_param("ss", $name, $pass);
+        $stmt = $this->db->prepare("INSERT INTO `user` (`email`, `szemelyi`, `name`, `password`) VALUES (?, ?, ?, ?);");
+        $stmt->bind_param("ssss", $email, $szemelyi, $name, $pass);
         if ($stmt->execute()) {
             $_SESSION['login'] = true;
             header("location: index.php");
