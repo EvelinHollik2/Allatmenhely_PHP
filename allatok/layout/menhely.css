@@ -1,3 +1,7 @@
+body{
+    background-color: lightblue;
+}
+
 .navbar-nav .nav-link.active{
     color: white;
     background-color: black;
