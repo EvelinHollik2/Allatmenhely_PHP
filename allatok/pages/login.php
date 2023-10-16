@@ -4,16 +4,15 @@ if (filter_input(INPUT_POST,
                 FILTER_VALIDATE_BOOLEAN,
                 FILTER_NULL_ON_FAILURE)) {
     //-- A kapott adatok feldolgozása    
-    $email = htmlspecialchars(filter_input(INPUT_POST, 'email'));
-    $username = htmlspecialchars(filter_input(INPUT_POST, 'username'));
-    $password = htmlspecialchars(filter_input(INPUT_POST, 'password'));
-    $db->login($username, $password);
+    $email = htmlspecialchars(filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL));
+    $name = htmlspecialchars(filter_input(INPUT_POST, 'username'));
+    $pass = htmlspecialchars(filter_input(INPUT_POST, 'password'));
 
-    if ($db->login($username, $password)) {
+    if ($db->login($name, $pass)) {
         $_SESSION['login'] = true;
-        $_SESSION['email'] = '';
         $_SESSION['username'] = '';
         $_SESSION['password'] = '';
+        header("Location: index.php");  
     }
 }
 ?>

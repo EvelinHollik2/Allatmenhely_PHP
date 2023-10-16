@@ -14,6 +14,7 @@ require_once './layout/head.php';
 <body>
     
     <?php
+    var_dump($_SESSION);
     $menu = filter_input(INPUT_GET, "menu");
     require_once './layout/header.php';
     require_once './layout/menu.php';

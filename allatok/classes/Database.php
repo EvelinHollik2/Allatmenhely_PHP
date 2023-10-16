@@ -18,29 +18,52 @@ class Database {
             $result = $stmt->get_result();
             $row = $result->fetch_assoc();
             //var_dump(password_hash($pass, PASSWORD_ARGON2I));
-            var_dump($row['password'],$pass);
+            var_dump($row, $pass);
             if ($pass == $row['password']) {
-                //-- felhasználónáv és jelszó helyes
+                //-- felhasználónév és jelszó helyes
                 $_SESSION['username'] = $row['name'];
                 $_SESSION['login'] = true;
-            } else {
-                $_SESSION['username'] = '';
-                $_SESSION['login'] = false;
+                return true;
             }
-            // Free result set
-            $result->free_result();
-            header("Location: index.php");
+        } else {
+            $_SESSION['username'] = '';
+            $_SESSION['login'] = false;
+            return false;
         }
+        // Free result set
+        $result->free_result();
         return false;
     }
 
-    public function register($emailcim, $igazolvanyszam, $name, $pass) {
-        //$password = password_hash($pass, PASSWORD_ARGON2I);
-        $stmt = $this->db->prepare("INSERT INTO `users` (`emailcim`, `igazolvanyszam`, `name`, `password`) VALUES (?, ?, ?, ?);");
-        $stmt->bind_param("ssss", $emailcim, $igazolvanyszam, $name, $pass);
-        if ($stmt->execute()) {
-            $_SESSION['login'] = true;
-            header("location: index.php");
+    /* email ellenörző @ */
+
+    public function register($igazolvanyszam, $orokbefogado_neve, $email, $name, $pass) {
+        $stmt = $this->db->prepare("INSERT INTO `users`(`userid`, `igazolvanyszam`, `orokbefogado_neve`, `emailcim`, `name`, `password`) VALUES (NULL,?,?,?,?,?)");
+
+        if (!$stmt) {
+            die('Error: ' . $this->db->error);
         }
+
+        $stmt->bind_param("sssss", $igazolvanyszam, $orokbefogado_neve, $email, $name, $pass);
+
+        try {
+            if ($stmt->execute()) {
+                $_SESSION['login'] = true;
+                header("location: index.php");
+            }
+        } catch (Exception $e) {
+
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
+
+    function osszesAllat() {
+        $result = $this->db->query("SELECT * FROM `allat`");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    function kivalasztottAllat($id) {
+        $result = $this->db->query("SELECT * FROM `allat`WHERE allatid=" . $id);
+        return $result->fetch_assoc();
     }
 }

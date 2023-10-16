@@ -16,8 +16,12 @@ switch ($menu) {
     case 'regisztracio':
         require_once './pages/regisztracio.php';
         break;
-    case 'rolunk':
-        require_once './pages/rolunk.php';
+    case 'home':
+        if ($id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT)) {
+            require_once './pages/kivalasztott.php';
+        } else {
+            require_once './pages/home.php';
+        }
         break;
     default:
         require_once './pages/home.php';
