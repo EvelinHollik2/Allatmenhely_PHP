@@ -1,5 +1,6 @@
 <?php
 
+ 
 switch ($menu) {
     case 'orokbefogadasUser':
         require_once './pages/orokbefogadasUser.php';
@@ -10,20 +11,26 @@ switch ($menu) {
     case 'orokbefogadasGuest':
         require_once './pages/orokbefogadasGuest.php';
         break;
-    case 'login':
+    case 'login';
         require_once './pages/login.php';
         break;
     case 'regisztracio':
         require_once './pages/regisztracio.php';
         break;
+    case 'rolunk':
+        require_once './pages/rolunk.php';
+        break;
     case 'home':
-        if ($id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT)) {
+        if ($id=filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT))
+        {
             require_once './pages/kivalasztott.php';
-        } else {
+        }else
+        {
             require_once './pages/home.php';
         }
         break;
     default:
         require_once './pages/home.php';
         break;
+
 }

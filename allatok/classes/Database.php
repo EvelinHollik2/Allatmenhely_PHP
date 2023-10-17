@@ -57,13 +57,22 @@ class Database {
         }
     }
 
-    function osszesAllat() {
+    public function osszesAllat() {
         $result = $this->db->query("SELECT * FROM `allat`");
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    function kivalasztottAllat($id) {
+    public function kivalasztottAllat($id) {
         $result = $this->db->query("SELECT * FROM `allat`WHERE allatid=" . $id);
         return $result->fetch_assoc();
+    }
+
+    public function getFajok() {
+        $result = $this->db->query("SELECT DISTINCT `faj` FROM `allat`;");
+        return $result->fetch_all();
+    }
+    public function getFajtak() {
+        $result = $this->db->query("SELECT DISTINCT `fajta` FROM `allat`;");
+        return $result->fetch_all();
     }
 }
