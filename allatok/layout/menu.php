@@ -18,7 +18,7 @@
                         <a class="nav-link'.($menu=='orokbefogadasUser'?' active':'').'" aria-current="page" href="index.php?menu=orokbefogadasUser">Örökbefogadás</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link '.($menu=='logut'?' active':'').'" href="index.php?menu=logout">Kilépés</a>
+                        <a class="nav-link '.($menu=='logout'?' active':'').'" href="index.php?menu=logout">Kilépés</a>
                 </li>';
                 } else {
                     echo '<li class="nav-item">
